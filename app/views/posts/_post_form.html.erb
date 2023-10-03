@@ -1,0 +1,14 @@
+<%= form_width ,model: @post do |f| %>
+	<%= f.label :image %>
+	<%= f.text_field :image %>
+	<br>
+	<%= f.label :caption%>
+	<%= f.text_field :caption%>
+	<br>
+
+	<% if @post.new_record? %>
+		<%= f.submit 'Create'%>
+	<% else %>
+		<%= f.submit 'Update' %>
+	<% end %>
+<% end %>

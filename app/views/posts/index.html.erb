@@ -1,0 +1,15 @@
+<h1>Posts</h1>
+
+<% if @posts.any? %>
+	<ul>
+		<% @post.each do |post| %>
+			<li>
+				<%= link_to post.image, post_path(post) %>
+			</li>
+		<%end%>
+	</ul>
+<%else%>
+	<p>No posts found.</p>
+<%end%>
+<br>
+<%= link_to 'Create New Post', new_post_path %>
