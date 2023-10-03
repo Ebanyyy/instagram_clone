@@ -2,9 +2,17 @@
 
 <% if @posts.any? %>
 	<ul>
-		<% @post.each do |post| %>
+		<% @posts.each do |post| %>
 			<li>
 				<%= link_to post.image, post_path(post) %>
+				<br>
+					<%= link_to post_path(post) do %>
+						<% if post.photos.attached? %>
+							<%= image_tag post.photos.first, width: 100, height: 100%>
+						<%else%>
+							<p>No photo found. </p>
+						<%end%>
+					<%end%>
 			</li>
 		<%end%>
 	</ul>

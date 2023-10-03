@@ -6,7 +6,7 @@
 		<% @post.photos.each do |photo|%>
 			<%= link_to rails_blob_path(photo, disposition: "attachment") do %>
 			<%end%>
-		<%= image_tag photo, height: 100 %>
+		<%= image_tag photo, height: 200 %>
 		<%end%>
 	<%else%>
 		<p>No photo found.</p>
