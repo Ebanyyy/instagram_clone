@@ -1,8 +1,14 @@
-<%=form_width model: @post do |f| %>
+<center><h1>Instagram 2.0</h1></center>
+
+<center><%=form_with model: @post do |f| %>
 	<%= f.label :image %>
+	<br>
 	<%= f.text_field :image %>
 	<br>
+	<p>
 	<%= f.label :caption%>
+	<br>
 	<%= f.text_field :caption%>
+	<p>
 	<%= f.submit 'Create' %>
-<% end %>
+<% end %></center>

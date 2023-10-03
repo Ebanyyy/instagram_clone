@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	before_action :set_post, only: [:show, :edit, :update]
+	before_action :set_post, only: [:show, :edit, :update, :destroy]
 
 	def index
 		@posts = Post.all
@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@post = Post.create(image: params[:post][:image])
+		@post = Post.create(post_params)
 
 		if @post.save
 			redirect_to post_path(@post)
@@ -26,8 +26,9 @@ class PostsController < ApplicationController
 	end
 
 	def update
-		@post. update(image: params[:post][:image],
-			caption: params[:post][:caption])
+		# @post.update(image: params[:post][:image],
+		# 	caption: params[:post][:caption])
+		@post.update(post_params.merge(image: params[:post][:image]))
 
 		if @post.save
 			redirect_to post_path(@post)
@@ -36,8 +37,17 @@ class PostsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@post.destroy
+		redirect_to root_path(@post)
+	end
+
 	private
 		def set_post
 			@post = Post.find(params[:id])
 		end
+
+	def post_params
+		params.require(:post).permit(:image, :caption, photos: [])
+	end
 end

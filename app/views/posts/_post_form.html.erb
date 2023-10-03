@@ -1,6 +1,9 @@
-<%= form_width ,model: @post do |f| %>
+<%= form_with model: @post do |f| %>
 	<%= f.label :image %>
 	<%= f.text_field :image %>
+	<br>
+	<%= f.label :photos%>
+	<%= f.file_field :photos, multiple: true %>
 	<br>
 	<%= f.label :caption%>
 	<%= f.text_field :caption%>
