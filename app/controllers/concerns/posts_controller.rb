@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@post = Post.create(post_params)
+		@post = current_user.posts.create(post_params)
 
 		if @post.save
 			redirect_to post_path(@post)
@@ -20,6 +20,7 @@ class PostsController < ApplicationController
 	end
 
 	def show
+		@ccomment = current_user.comments.new
 	end
 
 	def edit
@@ -28,7 +29,7 @@ class PostsController < ApplicationController
 	def update
 		# @post.update(image: params[:post][:image],
 		# 	caption: params[:post][:caption])
-		@post.update(post_params.merge(image: params[:post][:image]))
+		@post.update(post_params)
 
 		if @post.save
 			redirect_to post_path(@post)
@@ -48,6 +49,6 @@ class PostsController < ApplicationController
 		end
 
 	def post_params
-		params.require(:post).permit(:image, :caption, photos: [])
+		params.require(:post).permit(:caption, photos: [])
 	end
 end

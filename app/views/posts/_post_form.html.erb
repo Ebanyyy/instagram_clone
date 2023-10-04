@@ -1,7 +1,4 @@
-<%= form_with model: @post do |f| %>
-	<%= f.label :image %>
-	<%= f.text_field :image %>
-	<br>
+<center><%= form_with model: @post do |f| %>
 	<%= f.label :photos%>
 	<%= f.file_field :photos, multiple: true %>
 	<br>
@@ -14,4 +11,4 @@
 	<% else %>
 		<%= f.submit 'Update' %>
 	<% end %>
-<% end %>
+<% end %></center>
