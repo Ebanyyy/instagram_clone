@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	before_action :set_post, only: [:show, :edit, :update, :destroy]
+	before_action :set_post, only: [:show, :edit, :update, :destroy, :like]
 
 	def index
 		@posts = Post.all
@@ -41,6 +41,11 @@ class PostsController < ApplicationController
 	def destroy
 		@post.destroy
 		redirect_to root_path(@post)
+	end
+
+	def like
+		current_user.likes.create(likeable: @post)
+		redirect_back(fallback_location: root_path)
 	end
 
 	private

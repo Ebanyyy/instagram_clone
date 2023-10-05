@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :comments
   end
 
+  post "/posts/:id/like", to: "posts#like", as: "like_post"
+
   resources :users, only: [:show]
 
   post '/users/:id/follow', to: "users#follow", as: "follow_user"

@@ -20,6 +20,8 @@ class User < ApplicationRecord
   has_many :following_users, foreign_key: :followee_id, class_name: 'Follow'
   has_many :followers, through: :following_users
 
+  has_many :likes, dependent: :destroy
+
   def is_following?(followee_id)
     followers.where(id: followee_id).first 
   end
