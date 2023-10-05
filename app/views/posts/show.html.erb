@@ -17,13 +17,16 @@
 <%end%>
 
 <% if @post.comments.any?%>
-		<% @post.comments.each do |comment| %>
-		<li><%= ccomment.comment%></li>
+		<% @post.comments.each do |ccomment| %>
+		<li><%= ccomment.comment %></li>
+		<%= link_to 'Delete Comment', post_comment_path(@post, ccomment), data: { turbo_method: :delete,
+		turbo_confirm: "Are you sure?"}%>
 	<%end%>
 <%else%>
 	<p>No comment.</p>
 <%end%>
-
+<br>
+<br>
 <%= link_to 'Edit', edit_post_path(@post)%>
 <%= link_to 'Destroy', post_path(@post), data: { turbo_method: :delete,
 turbo_confirm: "Are you sure?"}%>
